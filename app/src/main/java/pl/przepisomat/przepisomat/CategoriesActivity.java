@@ -27,7 +27,6 @@ public class CategoriesActivity extends BaseActivity {
 
         expandableListView = findViewById(R.id.categoryListView);
 
-        //Domyślne ustawienia dla dolnego paska menu
         setDefaults();
 
         Call<CategoryList> categoryListCall = ApiService.getService().getCategories();

@@ -43,7 +43,8 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener homeButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
         }
     };
 

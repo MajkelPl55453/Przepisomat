@@ -22,7 +22,6 @@ import pl.przepisomat.przepisomat.api.CategoryList;
 
 public class CategoriesAdapter extends BaseExpandableListAdapter{
     private CategoryList response;
-    private Category singleCategory;
     private Context context;
 
     public CategoriesAdapter(Context context, CategoryList response)
