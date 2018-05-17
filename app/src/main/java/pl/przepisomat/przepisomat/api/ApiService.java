@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiService {
     public static ApiClient getService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.248/api/")
+                .baseUrl("http://foodapi.pl/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
