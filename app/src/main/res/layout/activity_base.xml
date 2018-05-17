@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="pl.przepisomat.przepisomat.BaseActivity">
+    android:layout_height="55dp"
+    android:layout_gravity="bottom"
+    tools:context="pl.przepisomat.przepisomat.BaseActivity"
+    android:layout_alignParentBottom="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

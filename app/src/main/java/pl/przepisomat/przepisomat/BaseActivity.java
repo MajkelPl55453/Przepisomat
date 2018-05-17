@@ -1,5 +1,6 @@
 package pl.przepisomat.przepisomat;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,11 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
+        this.setDefaults();
+    }
+
+    protected void setDefaults()
+    {
         this.home_button = findViewById(R.id.bmHomeButton);
         this.categories_button = findViewById(R.id.bmCategoriesButton);
         this.favourites_button = findViewById(R.id.bmFavouritesButton);
@@ -37,14 +43,16 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener homeButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
         }
     };
 
     View.OnClickListener categoriesButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+            Intent intent = new Intent(getBaseContext(), CategoriesActivity.class);
+            startActivity(intent);
         }
     };
 
