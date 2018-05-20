@@ -3,6 +3,8 @@ package pl.przepisomat.przepisomat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.uytkownik.myapplication.R;
+
 public class BaseActivity extends AppCompatActivity {
 
     @Override
