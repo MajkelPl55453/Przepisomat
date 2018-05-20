@@ -12,4 +12,7 @@ public interface ApiClient {
     @GET("getCategories")
     Call<CategoryList> getCategories();
 
+    @GET("getRecipesNameList")
+    Call<RecipesNames> getRecipesNames();
+
 }

@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -38,7 +36,10 @@ public class BaseActivity extends AppCompatActivity {
         this.favourites_button.setOnClickListener(this.favouritesButtonListener);
         this.shopping_cart_button.setOnClickListener(this.shoppingCartButtonListener);
         this.user_account_button.setOnClickListener(this.userAccountButtonListener);
+
     }
+
+
 
     View.OnClickListener homeButtonListener = new View.OnClickListener(){
         public void onClick(View v)
@@ -76,4 +77,5 @@ public class BaseActivity extends AppCompatActivity {
             Log.println(Log.DEBUG,"tag","dziala");
         }
     };
+
 }
