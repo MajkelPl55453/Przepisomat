@@ -1,7 +1,9 @@
 package pl.przepisomat.przepisomat;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends BaseActivity {
 
@@ -11,5 +13,18 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         setDefaults();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.commonmenus, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }
