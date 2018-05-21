@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,10 +21,10 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        this.setDefaults();
+        this.setDefaults(false);
     }
 
-    protected void setDefaults()
+    protected void setDefaults(boolean setHomeIcon)
     {
         this.home_button = findViewById(R.id.bmHomeButton);
         this.categories_button = findViewById(R.id.bmCategoriesButton);
@@ -37,6 +38,8 @@ public class BaseActivity extends AppCompatActivity {
         this.shopping_cart_button.setOnClickListener(this.shoppingCartButtonListener);
         this.user_account_button.setOnClickListener(this.userAccountButtonListener);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(setHomeIcon);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(setHomeIcon);
     }
 
 
@@ -78,4 +81,12 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home)
+            this.finish();
+
+        return super.onOptionsItemSelected(item);
+    }
 }

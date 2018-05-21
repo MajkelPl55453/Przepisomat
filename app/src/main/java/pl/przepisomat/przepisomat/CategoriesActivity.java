@@ -26,7 +26,7 @@ public class CategoriesActivity extends BaseActivity {
 
         expandableListView = findViewById(R.id.categoryListView);
 
-        setDefaults();
+        setDefaults(true);
 
         Call<CategoryList> categoryListCall = ApiService.getService().getCategories();
         categoryListCall.enqueue(new Callback<CategoryList>() {
@@ -43,7 +43,5 @@ public class CategoriesActivity extends BaseActivity {
                 Toast.makeText(CategoriesActivity.this, "Blad pobierania danych: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }
