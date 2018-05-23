@@ -20,5 +20,13 @@ public interface ApiClient {
     Call<LoginResponse> login (@Field("username") String username,
                         @Field("password") String password);
 
+    @POST("/register")
+    @FormUrlEncoded
+    Call<RegisterResponse> register (@Field("email") String email,
+                                 @Field("username") String username,
+                               @Field("password") String password);
+
+
+
 
 }
