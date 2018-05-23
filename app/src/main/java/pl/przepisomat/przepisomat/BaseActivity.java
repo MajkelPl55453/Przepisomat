@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.uytkownik.myapplication.R;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -75,7 +74,9 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener userAccountButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
         }
     };
 }
