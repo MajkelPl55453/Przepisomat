@@ -1,7 +1,8 @@
 package pl.przepisomat.przepisomat;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import pl.przepisomat.przepisomat.activity.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
