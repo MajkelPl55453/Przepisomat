@@ -1,13 +1,14 @@
-package pl.przepisomat.przepisomat;
+package pl.przepisomat.przepisomat.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import pl.przepisomat.przepisomat.MainActivity;
+import pl.przepisomat.przepisomat.R;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -59,7 +60,8 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener favouritesButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+            Intent intent = new Intent(getBaseContext(), RecipesActivity.class);
+            startActivity(intent);
         }
     };
 

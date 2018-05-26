@@ -1,7 +1,6 @@
-package pl.przepisomat.przepisomat;
+package pl.przepisomat.przepisomat.activity;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ExpandableListView;
@@ -9,9 +8,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import pl.przepisomat.przepisomat.Adapters.CategoriesAdapter;
-import pl.przepisomat.przepisomat.api.ApiService;
-import pl.przepisomat.przepisomat.api.CategoryList;
+import pl.przepisomat.przepisomat.R;
+import pl.przepisomat.przepisomat.adapters.CategoriesAdapter;
+import pl.przepisomat.przepisomat.api.service.ApiService;
+import pl.przepisomat.przepisomat.api.model.CategoryList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
