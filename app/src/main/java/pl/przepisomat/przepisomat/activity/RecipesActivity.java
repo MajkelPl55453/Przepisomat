@@ -1,9 +1,9 @@
 package pl.przepisomat.przepisomat.activity;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import pl.przepisomat.przepisomat.R;
+import pl.przepisomat.przepisomat.adapters.RecipeArrayAdapter;
 import pl.przepisomat.przepisomat.api.model.Recipe;
 import pl.przepisomat.przepisomat.api.service.ApiService;
 import retrofit2.Call;
@@ -23,7 +24,10 @@ public class RecipesActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_recipes);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         listView = findViewById(R.id.recipiesListView);
 
@@ -34,8 +38,9 @@ public class RecipesActivity extends BaseActivity{
             @Override
             public void onResponse(@NonNull Call<RecipesList> call, @NonNull Response<RecipesList> response) {
                 RecipesList recipes = response.body();
-                ArrayAdapter<Recipe> arrayAdapter = new ArrayAdapter<>(RecipesActivity.this, android.R.layout.simple_list_item_1, recipes.recipes);
-                listView.setAdapter(arrayAdapter);
+                //ArrayAdapter<Recipe> arrayAdapter = new ArrayAdapter<>(RecipesActivity.this, android.R.layout.simple_list_item_1, recipes.recipes);
+                RecipeArrayAdapter adapter = new RecipeArrayAdapter(RecipesActivity.this, recipes.recipes.toArray(new Recipe[recipes.recipes.size()]));
+                listView.setAdapter(adapter);
                 Log.d("TAG", new Gson().toJson(recipes));
             }
 
@@ -44,9 +49,8 @@ public class RecipesActivity extends BaseActivity{
                 Toast.makeText(RecipesActivity.this, "Blad pobierania danych: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
+
     public static class RecipesList{
         public List<Recipe> recipes;
     }
