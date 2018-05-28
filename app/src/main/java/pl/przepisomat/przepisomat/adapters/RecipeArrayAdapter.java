@@ -3,6 +3,7 @@ package pl.przepisomat.przepisomat.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,5 +51,16 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         }
 
         return rowView;
+    }
+
+    @Nullable
+    @Override
+    public Recipe getItem(int position) {
+        return values[position];
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return values[position].getId();
     }
 }

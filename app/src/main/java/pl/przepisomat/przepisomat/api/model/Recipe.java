@@ -1,5 +1,7 @@
 package pl.przepisomat.przepisomat.api.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Recipe {
+public class Recipe implements Serializable{
     private Long id;
     private String nazwa;
     private String czas_przygotowania;

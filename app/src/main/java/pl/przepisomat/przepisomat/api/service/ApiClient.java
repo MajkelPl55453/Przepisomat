@@ -16,4 +16,10 @@ public interface ApiClient {
 
     @GET("getRecipesList/{limit}/{offset}")
     Call<RecipesActivity.RecipesList> getRecipes(@Path("limit") int limit, @Path("offset") int offset);
+
+    @GET("getStepsForRecipe/{id}")
+    Call<Object> getStepsForRecipe(@Path("id") Long id);
+
+    @GET("getProductsForRecipe/{id}")
+    Call<Object> getProductsForRecipe(@Path("id") Long id);
 }
