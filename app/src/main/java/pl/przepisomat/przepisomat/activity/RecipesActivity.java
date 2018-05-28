@@ -1,9 +1,12 @@
 package pl.przepisomat.przepisomat.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -47,6 +50,17 @@ public class RecipesActivity extends BaseActivity{
             @Override
             public void onFailure(@NonNull Call<RecipesList> call, Throwable t) {
                 Toast.makeText(RecipesActivity.this, "Blad pobierania danych: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("test",listView.getAdapter().getItem(i).toString());
+
+                Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
+                intent.putExtra("Recipe", (Recipe)listView.getAdapter().getItem(i));
+                startActivity(intent);
             }
         });
     }
