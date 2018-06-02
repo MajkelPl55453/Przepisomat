@@ -60,8 +60,7 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener favouritesButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Intent intent = new Intent(getBaseContext(), RecipesActivity.class);
-            startActivity(intent);
+            Log.println(Log.DEBUG,"tag","dziala");
         }
     };
 
