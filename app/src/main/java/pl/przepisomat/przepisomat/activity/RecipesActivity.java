@@ -60,7 +60,7 @@ public class RecipesActivity extends BaseActivity implements ListView.ListViewLi
                 Log.d("test",listView.getAdapter().getItem(i).toString());
 
                 Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
-                intent.putExtra("Recipe", (Recipe)listView.getAdapter().getItem(i));
+                intent.putExtra("RecipeID", ((Recipe)listView.getAdapter().getItem(i)).getId());
                 startActivity(intent);
             }
         });

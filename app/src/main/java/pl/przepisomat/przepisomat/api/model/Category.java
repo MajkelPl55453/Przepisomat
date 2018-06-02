@@ -9,7 +9,7 @@ import java.util.List;
 public class Category {
     public Long id;
     public String name;
-    public int root;
+    public Long root;
     public String symbol;
     public List<Category> childs;
 }

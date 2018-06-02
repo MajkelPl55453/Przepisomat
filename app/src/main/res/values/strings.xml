@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Przepisomat</string>
+    <string name="tytu">Tytuł</string>
+    <string name="czas_przygotowania">Czas przygotowania</string>
+    <string name="trudno">Trudność</string>
+    <string name="ilo_porcji">Ilość porcji</string>
+    <string name="sk_adniki_potrzebne">Składniki potrzebne:</string>
 </resources>
