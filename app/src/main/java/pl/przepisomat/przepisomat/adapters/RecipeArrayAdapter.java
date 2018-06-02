@@ -1,8 +1,10 @@
 package pl.przepisomat.przepisomat.adapters;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.net.URL;
+import java.util.Collection;
 
 import pl.przepisomat.przepisomat.R;
 import pl.przepisomat.przepisomat.api.model.Recipe;
 
 public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
     private final Context context;
-    private final Recipe[] values;
+    private Recipe[] values;
 
     public RecipeArrayAdapter(Context context, Recipe[] values) {
         super(context, -1, values);
@@ -50,5 +53,51 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         }
 
         return rowView;
+    }
+
+    @Override
+    public void addAll(@NonNull Collection<? extends Recipe> collection) {
+        values = concat(values, collection.toArray(new Recipe[collection.size()-1]));
+
+    }
+
+    @Override
+    public void registerDataSetObserver(DataSetObserver observer) {
+        super.registerDataSetObserver(observer);
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        super.unregisterDataSetObserver(observer);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return values.length;
+    }
+    @Override
+    public Recipe getItem(int pos) {
+        return values[pos];
+    }
+
+    static Recipe[] concat(Recipe[]... arrays) {
+        int length = 0;
+        for (Recipe[] array : arrays) {
+            length += array.length;
+        }
+        Recipe[] result = new Recipe[length];
+        int pos = 0;
+        for (Recipe[] array : arrays) {
+            for (Recipe element : array) {
+                result[pos] = element;
+                pos++;
+            }
+        }
+        return result;
     }
 }
