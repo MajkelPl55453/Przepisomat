@@ -9,4 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Products {
     private Long id;
+    private String nazwa;
+    private String symbol;
+    private String wartosc;
 }

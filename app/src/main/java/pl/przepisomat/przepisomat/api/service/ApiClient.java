@@ -1,6 +1,7 @@
 package pl.przepisomat.przepisomat.api.service;
 
-import pl.przepisomat.przepisomat.activity.RecipesActivity;
+import pl.przepisomat.przepisomat.activity.RecipeDetailsActivity;
+import pl.przepisomat.przepisomat.activity.RecipesActivity.RecipesList;
 import pl.przepisomat.przepisomat.api.model.CategoryList;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -15,12 +16,8 @@ public interface ApiClient {
     Call<CategoryList> getCategories();
 
     @GET("getRecipesList/{id}/{limit}/{offset}")
-    Call<RecipesActivity.RecipesList> getRecipes(@Path("id") Long id, @Path("limit") int limit, @Path("offset") int offset);
+    Call<RecipesList> getRecipes(@Path("id") Long id, @Path("limit") int limit, @Path("offset") int offset);
 
-    @GET("getStepsForRecipe/{id}")
-    Call<Object> getStepsForRecipe(@Path("id") Long id);
-
-    @GET("getProductsForRecipe/{id}")
-    Call<Object> getProductsForRecipe(@Path("id") Long id);
-
+    @GET("getRecipe/{id}")
+    Call<RecipeDetailsActivity.ResponseRecipe> getRecipe(@Path("id") Long id);
 }
