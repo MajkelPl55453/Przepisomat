@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import lombok.Setter;
 import pl.przepisomat.przepisomat.R;
 import pl.przepisomat.przepisomat.api.model.Category;
 import pl.przepisomat.przepisomat.api.model.CategoryList;
@@ -16,8 +17,13 @@ import pl.przepisomat.przepisomat.api.model.CategoryList;
  */
 
 public class CategoriesAdapter extends BaseExpandableListAdapter{
+    @Setter
     private CategoryList response;
     private Context context;
+
+    public CategoriesAdapter(Context context){
+        this.context = context;
+    }
 
     public CategoriesAdapter(Context context, CategoryList response)
     {

@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class Category {
-    public int id;
+    public Long id;
     public String name;
     public int root;
     public String symbol;
