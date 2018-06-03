@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Products {
+public class Product {
     private Long id;
     private String nazwa;
     private String symbol;

@@ -5,6 +5,7 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
             Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             imageView.setImageBitmap(bmp);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("RecipeAdapter", e.getLocalizedMessage(), e);
         }
 
         return rowView;

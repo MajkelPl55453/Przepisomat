@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="match_parent">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.9"
                 android:text="@string/tytu" />
 
             <TextView
                 android:id="@+id/detailsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="TextView" />
+                android:layout_weight="0.1" />
 
         </TableRow>
 
@@ -38,14 +35,15 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/czas_przygotowania" />
+                android:text="@string/czas_przygotowania"
+                android:layout_weight="0.9"/>
 
             <TextView
                 android:id="@+id/detailsTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="TextView" />
+                android:layout_weight="0.1"
+                 />
         </TableRow>
 
         <TableRow
@@ -56,14 +54,15 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/trudno" />
+                android:text="@string/trudno"
+                android:layout_weight="0.9"/>
 
             <TextView
                 android:id="@+id/detailsDif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="TextView" />
+                android:layout_weight="0.1"
+                />
         </TableRow>
 
         <TableRow
@@ -74,21 +73,41 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/ilo_porcji" />
+                android:text="@string/ilo_porcji"
+                android:layout_weight="0.9"/>
 
             <TextView
                 android:id="@+id/detailsCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="TextView" />
+                android:layout_weight="0.1"
+                />
         </TableRow>
         <TableRow>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/sk_adniki_potrzebne"
-                android:paddingTop="20dp"/>
+                android:paddingTop="20dp"
+                />
+
+        </TableRow>
+
+        <TableRow>
+            <pl.przepisomat.przepisomat.components.BulletTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bulletSteps"
+                android:paddingStart="40dp"
+                />
+        </TableRow>
+        <TableRow>
+            <ListView
+                android:id="@+id/listSteps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
         </TableRow>
     </TableLayout>
     <RelativeLayout
