@@ -1,22 +1,25 @@
 package pl.przepisomat.przepisomat.api.model.v2;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.przepisomat.przepisomat.api.model.Product;
+import pl.przepisomat.przepisomat.api.model.Steps;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe implements Serializable {
-    public Long id;
-    public String name;
-    public String image;
-    public String time;
-    public String difficulty;
-    public String portions;
-//    private Category category;
-//    private List<Products> products;
-//    private List<Steps> steps;
+    private Long id;
+    private String name;
+    private String image;
+    private String time;
+    private String difficulty;
+    private String portions;
+    private Map<String,Product> products;
+    private List<Steps> steps;
 }

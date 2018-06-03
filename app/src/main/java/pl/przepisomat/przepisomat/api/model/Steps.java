@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class Steps {
     private Long id;
     private String opis;
+
+    public String toString(){
+        return opis;
+    }
 }

@@ -35,7 +35,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Example application"
                 android:textSize="12sp" />
 
             <TextView
@@ -44,7 +43,6 @@
                 android:layout_weight="0.33"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Example application"
                 android:textSize="12sp" />
 
             <TextView
@@ -53,7 +51,6 @@
                 android:layout_weight="0.33"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Example application"
                 android:textSize="12sp" />
         </TableRow>
     </TableLayout>

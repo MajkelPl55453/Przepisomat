@@ -25,7 +25,7 @@ public class BulletTextView extends android.support.v7.widget.AppCompatTextView 
         }
     }
 
-    private void injectBulletPoints(String text) {
+    public void injectBulletPoints(String text) {
         String newLinedText = addNewLinesBetweenBullets(text);
         String htmlBulletText = addBulletPoints(newLinedText);
         setText(Html.fromHtml(htmlBulletText));
