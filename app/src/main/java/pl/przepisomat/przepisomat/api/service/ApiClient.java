@@ -20,4 +20,7 @@ public interface ApiClient {
 
     @GET("getRecipe/{id}")
     Call<RecipeDetailsActivity.ResponseRecipe> getRecipe(@Path("id") Long id);
+
+    @GET("getRecipesListByPopularity/{limit}/{offset}")
+    Call<RecipesList> getMostPopularRecipes(@Path("limit") int limit, @Path("offset") int offset);
 }

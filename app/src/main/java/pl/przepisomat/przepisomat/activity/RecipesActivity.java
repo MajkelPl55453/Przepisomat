@@ -57,8 +57,6 @@ public class RecipesActivity extends BaseActivity implements ListView.ListViewLi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("test",listView.getAdapter().getItem(i).toString());
-
                 Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
                 intent.putExtra("RecipeID", ((Recipe)listView.getAdapter().getItem(i)).getId());
                 startActivity(intent);
@@ -70,13 +68,13 @@ public class RecipesActivity extends BaseActivity implements ListView.ListViewLi
     public void onEndOfList() {
         offset += 10;
 
-        Call<RecipesList> categoryListCall = ApiService.getService().getRecipes(catId,10,offset);
-        updateList(categoryListCall);
+        Call<RecipesList> recipesListCall = ApiService.getService().getRecipes(catId,10,offset);
+        updateList(recipesListCall);
     }
 
-    private void updateList(Call<RecipesList> categoryListCall){
+    private void updateList(Call<RecipesList> recipesListCall){
         loadingSpinner.setVisibility(View.VISIBLE);
-        categoryListCall.enqueue(new Callback<RecipesList>() {
+        recipesListCall.enqueue(new Callback<RecipesList>() {
             @Override
             public void onResponse(@NonNull Call<RecipesList> call, @NonNull Response<RecipesList> response) {
                 RecipesList recipes = response.body();
