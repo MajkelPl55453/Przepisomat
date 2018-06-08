@@ -43,15 +43,7 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
         textTime.setText(values[position].getCzas_przygotowania());
         textDiff.setText(values[position].getTrudnosc());
         textPerson.setText(values[position].getIlosc_porcji());
-
-        URL url = null;
-        try {
-            url = new URL(values[position].getZdjecie());
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            imageView.setImageBitmap(bmp);
-        } catch (Exception e) {
-            Log.e("RecipeAdapter", e.getLocalizedMessage(), e);
-        }
+        imageView.setImageBitmap(getImageBitmap(context, values[position].getZdjecie()));
 
         return rowView;
     }
@@ -105,5 +97,15 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe> {
     @Override
     public long getItemId(int position) {
         return values[position].getId();
+    }
+
+    public static Bitmap getImageBitmap(Context context, String urlString){
+        try {
+            URL url = new URL(urlString);
+            return BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        } catch (Exception e) {
+            Log.e("RecipeAdapter", e.getLocalizedMessage(), e);
+        }
+        return BitmapFactory.decodeResource(context.getResources(), R.drawable.dinner);
     }
 }

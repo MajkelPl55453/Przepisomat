@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import pl.przepisomat.przepisomat.MainActivity;
 import pl.przepisomat.przepisomat.R;
 
 public class BaseActivity extends AppCompatActivity {
