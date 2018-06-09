@@ -1,4 +1,4 @@
-package pl.przepisomat.przepisomat;
+package pl.przepisomat.przepisomat.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import pl.przepisomat.przepisomat.activity.BaseActivity;
+import pl.przepisomat.przepisomat.R;
 import pl.przepisomat.przepisomat.api.service.ApiService;
 import pl.przepisomat.przepisomat.api.model.RecipeName;
 import pl.przepisomat.przepisomat.api.model.RecipesNames;
@@ -39,7 +39,7 @@ public class SearchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        setDefaults(true);
+        setDefaults(false);
 
         this.arrayList = new ArrayList<String>();
         this.idArrayList = new ArrayList<String>();
