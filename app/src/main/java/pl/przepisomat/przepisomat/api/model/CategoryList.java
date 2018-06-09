@@ -1,4 +1,4 @@
-package pl.przepisomat.przepisomat.api;
+package pl.przepisomat.przepisomat.api.model;
 
 import java.util.List;
 

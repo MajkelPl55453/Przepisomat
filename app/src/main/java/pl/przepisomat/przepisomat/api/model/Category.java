@@ -1,4 +1,4 @@
-package pl.przepisomat.przepisomat.api;
+package pl.przepisomat.przepisomat.api.model;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import java.util.List;
  */
 
 public class Category {
-    public int id;
+    public Long id;
     public String name;
-    public int root;
+    public Long root;
     public String symbol;
     public List<Category> childs;
 }

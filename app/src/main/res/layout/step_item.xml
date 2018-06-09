@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:padding="6dip">
+
+    <TextView
+        android:id="@+id/stepNb"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_below="@id/stepNb"
+        android:maxWidth="400dp"
+        android:id="@+id/stepDesc"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textSize="12sp"
+        android:singleLine="false"/>
+
+</RelativeLayout>
