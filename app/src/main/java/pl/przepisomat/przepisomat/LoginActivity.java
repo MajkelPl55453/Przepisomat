@@ -1,5 +1,6 @@
 package pl.przepisomat.przepisomat;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import pl.przepisomat.przepisomat.api.ApiClient;
 import pl.przepisomat.przepisomat.api.ApiService;
 import pl.przepisomat.przepisomat.api.LoginResponse;
+import pl.przepisomat.przepisomat.api.UserAccActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +24,7 @@ public class LoginActivity extends BaseActivity {
 
     View submitBtn;
     ApiClient mApiService;
-    CheckedTextView mResponseTv;
+    CheckedTextView tvRegister;
 
 
     @Override
@@ -34,8 +36,8 @@ public class LoginActivity extends BaseActivity {
 
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-        Button btLogin = (Button) findViewById(R.id.bLogin);
-        TextView mResponseTv = (TextView) findViewById(R.id.tvRegisterHere);
+        final Button btLogin = (Button) findViewById(R.id.bLogin);
+        TextView tvRegister = (TextView) findViewById(R.id.tvRegisterHere);
 
         btLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -45,8 +47,21 @@ public class LoginActivity extends BaseActivity {
                 String password = etPassword.getText().toString().trim();
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
                     sendPost(username, password);
+
+                    Intent i = new Intent(LoginActivity.this, UserAccActivity.class);
+                    startActivity(i);
                 }
+
             }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+
+            }
+
         });
     }
 
@@ -72,13 +87,13 @@ public class LoginActivity extends BaseActivity {
 
 
 
-    private void showResponse(String response) {
+    /*private void showResponse(String response) {
 
 
-        if(mResponseTv.getVisibility() == View.GONE) {
-            mResponseTv.setVisibility(View.VISIBLE);
+        if(tvRegister.getVisibility() == View.GONE) {
+            tvRegister.setVisibility(View.VISIBLE);
         }
         
-        mResponseTv.setText(response);
-    }
+        tvRegister.setText(response);
+    }*/
 }
