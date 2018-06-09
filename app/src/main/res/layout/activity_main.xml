@@ -3,17 +3,29 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context="pl.przepisomat.przepisomat.MainActivity">
+tools:context="pl.przepisomat.przepisomat.activity.MainActivity">
 
     <RelativeLayout
         android:id="@+id/topSection"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:paddingBottom="55sp">
         <TextView
+            android:id="@+id/mainHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tutaj będzie treść"/>
+            android:gravity="center"
+            android:text="@string/main_header"
+            android:textSize="20sp"/>
+        <GridView
+            android:layout_below="@id/mainHeader"
+            android:numColumns="1"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/grid"
+            />
     </RelativeLayout>
 
     <include layout="@layout/activity_base"></include>

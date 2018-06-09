@@ -1,28 +1,29 @@
-package pl.przepisomat.przepisomat.Adapters;
+package pl.przepisomat.przepisomat.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
-import java.util.List;
-
+import lombok.Setter;
 import pl.przepisomat.przepisomat.R;
-import pl.przepisomat.przepisomat.api.Category;
-import pl.przepisomat.przepisomat.api.CategoryList;
+import pl.przepisomat.przepisomat.api.model.Category;
+import pl.przepisomat.przepisomat.api.model.CategoryList;
 
 /**
  * Created by Majkel on 2018-05-03.
  */
 
 public class CategoriesAdapter extends BaseExpandableListAdapter{
+    @Setter
     private CategoryList response;
     private Context context;
+
+    public CategoriesAdapter(Context context){
+        this.context = context;
+    }
 
     public CategoriesAdapter(Context context, CategoryList response)
     {
