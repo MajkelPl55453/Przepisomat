@@ -10,16 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".CategoriesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.CategoriesActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".activity.RecipesActivity" />
+        <activity android:name=".activity.RecipeDetailsActivity" />
     </application>
 
 </manifest>

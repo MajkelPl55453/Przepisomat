@@ -1,4 +1,4 @@
-package pl.przepisomat.przepisomat.api;
+package pl.przepisomat.przepisomat.api.model;
 
 /**
  * Created by Majkel on 2018-05-20.

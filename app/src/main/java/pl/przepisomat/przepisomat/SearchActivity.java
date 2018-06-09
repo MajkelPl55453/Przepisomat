@@ -1,7 +1,5 @@
 package pl.przepisomat.przepisomat;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,23 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import pl.przepisomat.przepisomat.api.ApiService;
-import pl.przepisomat.przepisomat.api.RecipeName;
-import pl.przepisomat.przepisomat.api.RecipesNames;
+import pl.przepisomat.przepisomat.activity.BaseActivity;
+import pl.przepisomat.przepisomat.api.service.ApiService;
+import pl.przepisomat.przepisomat.api.model.RecipeName;
+import pl.przepisomat.przepisomat.api.model.RecipesNames;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
