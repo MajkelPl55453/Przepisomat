@@ -1,4 +1,4 @@
-package pl.przepisomat.przepisomat.api;
+package pl.przepisomat.przepisomat.api.service;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

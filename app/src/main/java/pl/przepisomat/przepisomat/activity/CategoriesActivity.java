@@ -1,17 +1,20 @@
-package pl.przepisomat.przepisomat;
+package pl.przepisomat.przepisomat.activity;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import pl.przepisomat.przepisomat.Adapters.CategoriesAdapter;
-import pl.przepisomat.przepisomat.api.ApiService;
-import pl.przepisomat.przepisomat.api.CategoryList;
+import pl.przepisomat.przepisomat.R;
+import pl.przepisomat.przepisomat.adapters.CategoriesAdapter;
+import pl.przepisomat.przepisomat.api.model.Category;
+import pl.przepisomat.przepisomat.api.model.CategoryList;
+import pl.przepisomat.przepisomat.api.service.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,6 +22,8 @@ import retrofit2.Response;
 
 //Rozszerzamy o aktywność Base ponieważ ona posiada dolne menu.
 public class CategoriesActivity extends BaseActivity {
+    public static final String CATEGORY_EXTRA = "catId";
+
     public ExpandableListView expandableListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +34,13 @@ public class CategoriesActivity extends BaseActivity {
 
         setDefaults();
 
+        final CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this);
         Call<CategoryList> categoryListCall = ApiService.getService().getCategories();
         categoryListCall.enqueue(new Callback<CategoryList>() {
             @Override
             public void onResponse(@NonNull Call<CategoryList> call, @NonNull Response<CategoryList> response) {
                 CategoryList categoryList = response.body();
-                CategoriesAdapter categoriesAdapter = new CategoriesAdapter(CategoriesActivity.this, categoryList);
+                categoriesAdapter.setResponse(categoryList);
                 expandableListView.setAdapter(categoriesAdapter);
                 Log.d("TAG", new Gson().toJson(categoryList));
             }
@@ -45,6 +51,15 @@ public class CategoriesActivity extends BaseActivity {
             }
         });
 
-
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                Category clickedCat = (Category)categoriesAdapter.getChild(i, i1);
+                Intent intent = new Intent(getBaseContext(), RecipesActivity.class);
+                intent.putExtra(CATEGORY_EXTRA, clickedCat.id);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 }
