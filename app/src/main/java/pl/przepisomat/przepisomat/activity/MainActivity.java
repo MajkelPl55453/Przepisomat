@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -55,6 +57,20 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        setDefaults(true);
+        setDefaults(false);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.commonmenus, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
+
 }
