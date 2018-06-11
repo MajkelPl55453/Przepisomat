@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.util.Log;
@@ -101,6 +103,19 @@ public class RecipesActivity extends BaseActivity implements ListView.ListViewLi
 
     public static class RecipesList{
         public List<Recipe> recipes = new ArrayList<>();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.commonmenus, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }
 

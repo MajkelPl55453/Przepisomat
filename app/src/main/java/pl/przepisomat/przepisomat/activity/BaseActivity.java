@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import pl.przepisomat.przepisomat.R;
 
 public class BaseActivity extends AppCompatActivity {
@@ -42,6 +44,16 @@ public class BaseActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(setHomeIcon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(setHomeIcon);
+
+        Realm.init(this);
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        Realm.compactRealm(realmConfiguration);
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
 

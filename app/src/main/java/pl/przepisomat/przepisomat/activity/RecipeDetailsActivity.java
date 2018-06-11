@@ -1,7 +1,10 @@
 package pl.przepisomat.przepisomat.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,7 +35,7 @@ public class RecipeDetailsActivity extends BaseActivity{
         findWidgets();
 
         Long recipeID = getIntent().getLongExtra("RecipeID", 0);
-
+        Log.d("dasdasdas", recipeID.toString());
         Call<ResponseRecipe> recipeCall = ApiService.getService().getRecipe(recipeID);
 
         recipeCall.enqueue(new Callback<ResponseRecipe>() {
@@ -74,5 +77,18 @@ public class RecipeDetailsActivity extends BaseActivity{
 
     public class ResponseRecipe{
         public Recipe recipe;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.commonmenus, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }

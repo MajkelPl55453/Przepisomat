@@ -1,5 +1,6 @@
 package pl.przepisomat.przepisomat.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -66,8 +67,9 @@ public class SearchActivity extends BaseActivity {
                 SearchActivity.this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Log.d("TAG", SearchActivity.this.arrayList.get(i).toString());
-                        Log.d("TAG", SearchActivity.this.idArrayList.get(i).toString());
+                    Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
+                    intent.putExtra("RecipeID", Long.parseLong(SearchActivity.this.idArrayList.get(i)));
+                    startActivity(intent);
                     }
                 });
             }
