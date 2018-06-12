@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Przepisomat.iml" filepath="$PROJECT_DIR$/Przepisomat.iml" />
+      <module fileurl="file://C:\Android-projekty\PrzepisomatNew\Przepisomat.iml" filepath="C:\Android-projekty\PrzepisomatNew\Przepisomat.iml" />
+      <module fileurl="file://C:\Android\Przepisomat\.idea\PrzepisomatNew.iml" filepath="C:\Android\Przepisomat\.idea\PrzepisomatNew.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

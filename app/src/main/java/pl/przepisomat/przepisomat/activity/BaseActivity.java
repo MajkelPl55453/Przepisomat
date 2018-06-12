@@ -12,6 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import pl.przepisomat.przepisomat.R;
 
+
 public class BaseActivity extends AppCompatActivity {
 
     ImageView home_button;
@@ -91,7 +92,9 @@ public class BaseActivity extends AppCompatActivity {
     View.OnClickListener userAccountButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-            Log.println(Log.DEBUG,"tag","dziala");
+
+            Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+            startActivity(intent);
         }
     };
 

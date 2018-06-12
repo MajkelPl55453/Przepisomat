@@ -2,10 +2,15 @@ package pl.przepisomat.przepisomat.api.service;
 
 import pl.przepisomat.przepisomat.activity.RecipeDetailsActivity;
 import pl.przepisomat.przepisomat.activity.RecipesActivity.RecipesList;
+import pl.przepisomat.przepisomat.api.model.LoginResponse;
+import pl.przepisomat.przepisomat.api.model.RegisterResponse;
 import pl.przepisomat.przepisomat.api.model.CategoryList;
 import pl.przepisomat.przepisomat.api.model.RecipesNames;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -27,4 +32,12 @@ public interface ApiClient {
 
     @GET("getRecipesListByPopularity/{limit}/{offset}")
     Call<RecipesList> getMostPopularRecipes(@Path("limit") int limit, @Path("offset") int offset);
+
+    @POST("login")
+    @FormUrlEncoded
+    Call<LoginResponse> login (@Field("username") String username, @Field("password") String password);
+
+    @POST("register")
+    @FormUrlEncoded
+    Call<RegisterResponse> register (@Field("email") String email, @Field("username") String username, @Field("password") String password);
 }
