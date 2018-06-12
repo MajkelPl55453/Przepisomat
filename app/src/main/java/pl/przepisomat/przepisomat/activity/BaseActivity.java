@@ -8,8 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import pl.przepisomat.przepisomat.R;
 
 public class BaseActivity extends AppCompatActivity {
@@ -17,7 +15,6 @@ public class BaseActivity extends AppCompatActivity {
     ImageView home_button;
     ImageView categories_button;
     ImageView favourites_button;
-    ImageView shopping_cart_button;
     ImageView user_account_button;
 
     @Override
@@ -33,27 +30,17 @@ public class BaseActivity extends AppCompatActivity {
         this.home_button = findViewById(R.id.bmHomeButton);
         this.categories_button = findViewById(R.id.bmCategoriesButton);
         this.favourites_button = findViewById(R.id.bmFavouritesButton);
-        this.shopping_cart_button = findViewById(R.id.bmShoppingCartButton);
         this.user_account_button = findViewById(R.id.bmUserAccountButton);
 
         this.home_button.setOnClickListener(this.homeButtonListener);
         this.categories_button.setOnClickListener(this.categoriesButtonListener);
         this.favourites_button.setOnClickListener(this.favouritesButtonListener);
-        this.shopping_cart_button.setOnClickListener(this.shoppingCartButtonListener);
         this.user_account_button.setOnClickListener(this.userAccountButtonListener);
 
         getSupportActionBar().setDisplayShowHomeEnabled(setHomeIcon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(setHomeIcon);
 
-        Realm.init(this);
 
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .schemaVersion(1)
-                .deleteRealmIfMigrationNeeded()
-                .build();
-
-        Realm.compactRealm(realmConfiguration);
-        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
 
@@ -75,13 +62,6 @@ public class BaseActivity extends AppCompatActivity {
     };
 
     View.OnClickListener favouritesButtonListener = new View.OnClickListener(){
-        public void onClick(View v)
-        {
-            Log.println(Log.DEBUG,"tag","dziala");
-        }
-    };
-
-    View.OnClickListener shoppingCartButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
             Log.println(Log.DEBUG,"tag","dziala");

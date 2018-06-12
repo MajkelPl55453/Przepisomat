@@ -5,7 +5,9 @@ import pl.przepisomat.przepisomat.activity.RecipesActivity.RecipesList;
 import pl.przepisomat.przepisomat.api.model.CategoryList;
 import pl.przepisomat.przepisomat.api.model.RecipesNames;
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -27,4 +29,7 @@ public interface ApiClient {
 
     @GET("getRecipesListByPopularity/{limit}/{offset}")
     Call<RecipesList> getMostPopularRecipes(@Path("limit") int limit, @Path("offset") int offset);
+
+    @POST("getRecipesListByIds/{limit}/{offset}")
+    Call<RecipesList> getRecipesListByIds(@Path("limit") int limit, @Path("offset") int offset, @Field("ids") String ids);
 }
