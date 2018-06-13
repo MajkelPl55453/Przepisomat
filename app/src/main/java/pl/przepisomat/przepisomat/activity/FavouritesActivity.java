@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import pl.przepisomat.przepisomat.Adapters.RecipeArrayAdapter;
@@ -51,6 +55,16 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        Realm.init(this);
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        Realm.compactRealm(realmConfiguration);
+        Realm.setDefaultConfiguration(realmConfiguration);
+
         setupList();
         setDefaults(true);
     }
@@ -72,7 +86,6 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
         listView = findViewById(R.id.recipiesListView);
         listView.setListViewListener(this);
         String ids = "";
-        String[] ids_arr = {};
         Realm realm = Realm.getDefaultInstance();
 
         RealmResults<FavoriteRecipe> favorites = realm
@@ -80,7 +93,8 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
                 .findAll();
 
         if (favorites.size() > 0) {
-            Toast.makeText(this, "Pobrano ulubione", Toast.LENGTH_SHORT).show();
+            String[] ids_arr = new String[favorites.size()];
+            //Toast.makeText(this, "Pobrano ulubione", Toast.LENGTH_SHORT).show();
             int x = 0;
             for (FavoriteRecipe favorite : favorites) {
                 ids_arr[x] = favorite.getRecipeId().toString();
@@ -91,8 +105,8 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
             Toast.makeText(this, "Brak ulubionych", Toast.LENGTH_SHORT).show();
         }
 
-
         Call<RecipesActivity.RecipesList> categoryListCall = ApiService.getService().getRecipesListByIds(10, offset, ids);
+        Log.d("tag", ids);
         updateList(categoryListCall);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,6 +132,7 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
             @Override
             public void onResponse(@NonNull Call<RecipesActivity.RecipesList> call, @NonNull Response<RecipesActivity.RecipesList> response) {
                 RecipesActivity.RecipesList recipes = response.body();
+                Log.d("taga", new Gson().toJson(response.body()));
                 if(recipes != null && !recipes.recipes.isEmpty()){
                     if(adapter == null) {
                         FavouritesActivity.this.recipesList.recipes.addAll(recipes.recipes);

@@ -9,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Majkel on 2018-05-03.
@@ -31,5 +32,5 @@ public interface ApiClient {
     Call<RecipesList> getMostPopularRecipes(@Path("limit") int limit, @Path("offset") int offset);
 
     @POST("getRecipesListByIds/{limit}/{offset}")
-    Call<RecipesList> getRecipesListByIds(@Path("limit") int limit, @Path("offset") int offset, @Field("ids") String ids);
+    Call<RecipesList> getRecipesListByIds(@Path("limit") int limit, @Path("offset") int offset, @Query("ids") String ids);
 }

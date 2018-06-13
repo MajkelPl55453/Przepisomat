@@ -79,8 +79,6 @@ public class RecipeDetailsActivity extends BaseActivity{
         Realm.compactRealm(realmConfiguration);
         Realm.setDefaultConfiguration(realmConfiguration);
 
-
-
         setDefaults(true);
     }
 
