@@ -29,35 +29,28 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="20"
+                    android:layout_weight="25"
                     android:src="@drawable/ic_home_black_24dp"
                     android:contentDescription="Home button"
                     android:id="@+id/bmHomeButton"/>
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="20"
+                    android:layout_weight="25"
                     android:src="@drawable/ic_list_black_24dp"
                     android:contentDescription="Categories button"
                     android:id="@+id/bmCategoriesButton"/>
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="20"
+                    android:layout_weight="25"
                     android:src="@drawable/ic_star_black_24dp"
                     android:contentDescription="Favourites button"
                     android:id="@+id/bmFavouritesButton"/>
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:src="@drawable/ic_shopping_cart_black_24dp"
-                    android:contentDescription="Shopping cart button"
-                    android:id="@+id/bmShoppingCartButton"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
+                    android:layout_weight="25"
                     android:src="@drawable/ic_accessibility_black_24dp"
                     android:contentDescription="User account button"
                     android:id="@+id/bmUserAccountButton"/>

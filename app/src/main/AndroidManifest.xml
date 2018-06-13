@@ -29,6 +29,7 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.UserAccActivity"></activity>
 
+        <activity android:name=".activity.FavouritesActivity"></activity>
     </application>
 
 </manifest>
