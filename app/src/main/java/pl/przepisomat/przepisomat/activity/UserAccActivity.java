@@ -18,6 +18,7 @@ public class UserAccActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_acc);
 
+        //wyswietlenie dolnego menu
         setDefaults(true);
 
 
@@ -25,7 +26,7 @@ public class UserAccActivity extends BaseActivity {
         Button btLogout = (Button) findViewById(R.id.btLogout);
 
 
-
+        //przypisanie działania przyciskowi wylogowania
         btLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -40,7 +41,7 @@ public class UserAccActivity extends BaseActivity {
         });
 
     }
-
+    //wyswietlenie powitania
     private void Welcome (String username, TextView tvWelcome) {
 
 
