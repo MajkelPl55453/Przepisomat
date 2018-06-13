@@ -89,16 +89,18 @@ public class LoginActivity extends BaseActivity {
                 LoginResponse loginResponse = response.body();
                 //komunikat do konsoli
                 Log.d("tag", new Gson().toJson(loginResponse));
-
-                //komunikaty dla użytkownika
-                if(loginResponse.status == "succes") {
-                    //jeżeli uda się zalogować zostanie wyświetlona odpowiednia wiadomość pobrana z API
-                    Toast.makeText(getApplicationContext(), (String)loginResponse.message, Toast.LENGTH_SHORT).show();
+                if(loginResponse != null) {
+                    //komunikaty dla użytkownika
+                    if (loginResponse.status == "succes") {
+                        //jeżeli uda się zalogować zostanie wyświetlona odpowiednia wiadomość pobrana z API
+                        Toast.makeText(getApplicationContext(), (String) loginResponse.message, Toast.LENGTH_SHORT).show();
+                    } else {
+                        //jeżeli nie uda się zalogować, zostanie wyświetlona odpowiednia wiadomość pobrana z API
+                        Toast.makeText(getApplicationContext(), (String) loginResponse.message, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
-                    //jeżeli nie uda się zalogować, zostanie wyświetlona odpowiednia wiadomość pobrana z API
-                    Toast.makeText(getApplicationContext(), (String)loginResponse.message, Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(getApplicationContext(), "Błąd połączenia się z API", Toast.LENGTH_SHORT).show();
                 }
             }
 

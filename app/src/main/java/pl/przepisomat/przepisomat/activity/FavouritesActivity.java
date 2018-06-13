@@ -52,9 +52,6 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
 
         loadingSpinner = findViewById(R.id.pBar);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         //Ustawienie konfiguracji dla paczki realm odpowiedzialnej za przechowywanie danych na urządzeniu
         Realm.init(this);
 
