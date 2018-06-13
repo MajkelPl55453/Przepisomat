@@ -1,5 +1,6 @@
 package pl.przepisomat.przepisomat.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,7 @@ public class RegisterActivity extends BaseActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
 
+            //wyswietlenie dolnego menu
             setDefaults(true);
 
             final EditText etEmail = (EditText) findViewById(R.id.etEmail);
@@ -37,7 +39,7 @@ public class RegisterActivity extends BaseActivity {
             final EditText etPassword = (EditText) findViewById(R.id.etPassword);
             Button bRegister = (Button) findViewById(R.id.bRegister);
 
-
+            //pobranie danych z formularza oraz przypisanie działania przyciskowi
             bRegister.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -47,12 +49,15 @@ public class RegisterActivity extends BaseActivity {
                     String password = etPassword.getText().toString().trim();
                     if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
                         sendPost(email, username, password);
+
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(i);
                     }
                 }
             });
         }
 
-
+    //przekazanie pobranych danych z formularza do API
     private void sendPost(String email, String username, String password) {
 
         Call<RegisterResponse> registerRequest = ApiService.getService().register(email, username, password);
@@ -71,14 +76,7 @@ public class RegisterActivity extends BaseActivity {
             }
         });
     }
-    private void showResponse(String response) {
 
-        if(mResponseTv.getVisibility() == View.GONE) {
-            mResponseTv.setVisibility(View.VISIBLE);
-        }
-
-        mResponseTv.setText(response);
-    }
 }
 
 
