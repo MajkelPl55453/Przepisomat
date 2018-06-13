@@ -115,6 +115,7 @@ public class RecipeDetailsActivity extends BaseActivity{
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Obsługa ikony wyszukiwania oraz ikony ulubionych
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -137,6 +138,7 @@ public class RecipeDetailsActivity extends BaseActivity{
         }
     }
 
+    //Metoda odpowiada za dodawanie lub usuwanie przepisu z ulubionych
     private boolean addRemoveFavorite() {
         Realm realm = Realm.getDefaultInstance();
 
@@ -154,6 +156,8 @@ public class RecipeDetailsActivity extends BaseActivity{
         }
 
     }
+
+    //Metoda odpowiedzialna za dodawanie do ulubionych
     private void addToFavorites(Realm realm) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -166,6 +170,7 @@ public class RecipeDetailsActivity extends BaseActivity{
         });
     }
 
+    //Metoda odpowiedzialna za usuwanie z ulubionych
     private void removeFromFavorites(Realm realm, final FavoriteRecipe favorite) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override

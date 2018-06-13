@@ -26,8 +26,8 @@ import retrofit2.Response;
 public class CategoriesActivity extends BaseActivity {
     public static final String CATEGORY_EXTRA = "catId";
     CategoriesAdapter categoriesAdapter = null;
-
     public ExpandableListView expandableListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class CategoriesActivity extends BaseActivity {
 
         setDefaults(true);
 
+        //Pobranie listy kategorii oraz wyświetlenie jej przy pomocy ExpandableListView
         Call<CategoryList> categoryListCall = ApiService.getService().getCategories();
         categoryListCall.enqueue(new Callback<CategoryList>() {
             @Override
@@ -53,6 +54,7 @@ public class CategoriesActivity extends BaseActivity {
             }
         });
 
+        //Po kliknięciu w kategorię wyswietli się lista przepisów z danej kategorii
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {

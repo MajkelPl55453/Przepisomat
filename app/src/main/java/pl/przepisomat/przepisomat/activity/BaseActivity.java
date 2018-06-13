@@ -10,7 +10,11 @@ import android.widget.ImageView;
 
 import pl.przepisomat.przepisomat.R;
 
-
+/*
+    Klasa BaseActivity odpowiedzialna jest za podstawowe działanie aplikacji.
+    Są w niej ustawiane podstawe dane dotyczące menu głównego oraz obsługi przycisków
+    w tym menu.
+ */
 public class BaseActivity extends AppCompatActivity {
 
     ImageView home_button;
@@ -26,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
         this.setDefaults(false);
     }
 
+    //Ustawienie przycisków oraz listenerów na te przyciski.
     protected void setDefaults(boolean setHomeIcon)
     {
         this.home_button = findViewById(R.id.bmHomeButton);
@@ -40,12 +45,9 @@ public class BaseActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(setHomeIcon);
         getSupportActionBar().setDisplayHomeAsUpEnabled(setHomeIcon);
-
-
     }
 
-
-
+    //Listener dla przycisku głównej aktywności
     View.OnClickListener homeButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
@@ -54,6 +56,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
 
+    //Listener dla przycisku przejścia do aktywności z kategoriami.
     View.OnClickListener categoriesButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
@@ -62,6 +65,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
 
+    //Listener dla przycisku przejścia do listy ulubionych przepisów.
     View.OnClickListener favouritesButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
@@ -70,15 +74,16 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
 
+    //Listener dla przycisku przejścia do aktywności logowania
     View.OnClickListener userAccountButtonListener = new View.OnClickListener(){
         public void onClick(View v)
         {
-
             Intent intent = new Intent(getBaseContext(), LoginActivity.class);
             startActivity(intent);
         }
     };
 
+    //Obsługa strzałki powrotu w aplikacji
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

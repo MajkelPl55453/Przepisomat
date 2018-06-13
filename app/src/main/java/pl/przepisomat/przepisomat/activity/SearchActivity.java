@@ -26,6 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/*
+    Klasa odpowiedzialna jest za aktywność wyszukiwania.
+ */
 public class SearchActivity extends BaseActivity {
 
     private ArrayAdapter<String> arrayAdapter;
@@ -48,6 +51,7 @@ public class SearchActivity extends BaseActivity {
         this.progressBar = findViewById(R.id.progressbar);
         this.progressBar.setVisibility(View.VISIBLE);
 
+        //Pobranie listy z nazwami oraz id przepisów, które można wyszukać przy pomocy searchView
         Call<RecipesNames> recipesNamesCall = ApiService.getService().getRecipesNames();
         recipesNamesCall.enqueue(new Callback<RecipesNames>() {
             @Override
@@ -56,14 +60,20 @@ public class SearchActivity extends BaseActivity {
                 SearchActivity.this.isDataLoaded = true;
                 invalidateOptionsMenu();
                 SearchActivity.this.progressBar.setVisibility(View.INVISIBLE);
+
+                //Dodanie nazw przepisów oraz id przepisów do osobnych tablic
                 for(RecipeName recipeName : recipesNames.names )
                 {
                     SearchActivity.this.arrayList.add(recipeName.name);
                     SearchActivity.this.idArrayList.add(String.valueOf(recipeName.id));
                 }
+
+                //Dodanie adaptera tablicy w celu podpięcia tego adaptera do searchView
                 SearchActivity.this.arrayAdapter = new ArrayAdapter<String>(SearchActivity.this, android.R.layout.simple_list_item_1, SearchActivity.this.arrayList);
                 SearchActivity.this.listView = findViewById(R.id.searchListView);
                 SearchActivity.this.listView.setAdapter(SearchActivity.this.arrayAdapter);
+
+                //Listener przejścia do szczegółów wyszukanego przepisu
                 SearchActivity.this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,6 +91,7 @@ public class SearchActivity extends BaseActivity {
         });
     }
 
+    //Obsługa górnego toolbara
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if(SearchActivity.this.isDataLoaded == true) {
@@ -89,6 +100,8 @@ public class SearchActivity extends BaseActivity {
             searchItem.expandActionView();
             this.searchView = (SearchView) searchItem.getActionView();
             this.searchView.setEnabled(false);
+
+            //Listener uruchamiany po każdej zmianie tekstu wprowadzonej w searchView, sortuje listę nazw przepisów
             this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -108,6 +121,8 @@ public class SearchActivity extends BaseActivity {
             });
             this.searchView.setQueryHint("Wyszukaj przepisz...");
             this.searchView.setIconified(false);
+
+            //Stylowanie wyszukiwarki
             int searchPlateId = this.searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
             View searchPlate = this.searchView.findViewById(searchPlateId);
             if (searchPlate != null) {

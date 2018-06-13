@@ -55,6 +55,7 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        //Ustawienie konfiguracji dla paczki realm odpowiedzialnej za przechowywanie danych na urządzeniu
         Realm.init(this);
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
@@ -69,6 +70,7 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
         setDefaults(true);
     }
 
+    //Metoda odpowiada za złączenie elementów tablicy w jeden ciąg znaków
     private String implode(String separator, String... data) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < data.length - 1; i++) {
@@ -82,12 +84,14 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
         return sb.toString();
     }
 
+    //Ustawienie listy przepisów
     private void setupList(){
         listView = findViewById(R.id.recipiesListView);
         listView.setListViewListener(this);
         String ids = "";
         Realm realm = Realm.getDefaultInstance();
 
+        //Wczytanie wszystkich ulubionych przepisów
         RealmResults<FavoriteRecipe> favorites = realm
                 .where(FavoriteRecipe.class)
                 .findAll();
@@ -101,31 +105,64 @@ public class FavouritesActivity extends BaseActivity implements ListView.ListVie
                 x++;
             }
             ids = this.implode(",", ids_arr);
+
+            //Pobranie przepisów z api
+            Call<RecipesActivity.RecipesList> categoryListCall = ApiService.getService().getRecipesListByIds(10, offset, ids);
+            Log.d("tag", ids);
+            updateList(categoryListCall);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
+                    intent.putExtra("RecipeID", ((Recipe)listView.getAdapter().getItem(i)).getId());
+                    startActivity(intent);
+            }
+        });
         } else {
             Toast.makeText(this, "Brak ulubionych", Toast.LENGTH_SHORT).show();
         }
-
-        Call<RecipesActivity.RecipesList> categoryListCall = ApiService.getService().getRecipesListByIds(10, offset, ids);
-        Log.d("tag", ids);
-        updateList(categoryListCall);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
-                intent.putExtra("RecipeID", ((Recipe)listView.getAdapter().getItem(i)).getId());
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
     public void onEndOfList() {
         offset += 10;
 
-        Call<RecipesActivity.RecipesList> recipesListCall = ApiService.getService().getRecipes(catId,10,offset);
-        updateList(recipesListCall);
+        String ids = "";
+        Realm realm = Realm.getDefaultInstance();
+
+        //Wczytanie wszystkich ulubionych przepisów
+        RealmResults<FavoriteRecipe> favorites = realm
+                .where(FavoriteRecipe.class)
+                .findAll();
+
+        if (favorites.size() > 0) {
+            String[] ids_arr = new String[favorites.size()];
+            //Toast.makeText(this, "Pobrano ulubione", Toast.LENGTH_SHORT).show();
+            int x = 0;
+            for (FavoriteRecipe favorite : favorites) {
+                ids_arr[x] = favorite.getRecipeId().toString();
+                x++;
+            }
+            ids = this.implode(",", ids_arr);
+
+            //Pobranie przepisów z api
+            Call<RecipesActivity.RecipesList> categoryListCall = ApiService.getService().getRecipesListByIds(10, offset, ids);
+            Log.d("tag", ids);
+            updateList(categoryListCall);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getBaseContext(), RecipeDetailsActivity.class);
+                    intent.putExtra("RecipeID", ((Recipe)listView.getAdapter().getItem(i)).getId());
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Toast.makeText(this, "Brak ulubionych", Toast.LENGTH_SHORT).show();
+        }
     }
 
+    //Wyświetlenie przepisów po pobraniu z api
     private void updateList(Call<RecipesActivity.RecipesList> recipesListCall){
         loadingSpinner.setVisibility(View.VISIBLE);
         recipesListCall.enqueue(new Callback<RecipesActivity.RecipesList>() {
