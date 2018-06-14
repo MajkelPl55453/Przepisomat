@@ -57,9 +57,7 @@ public class LoginActivity extends BaseActivity {
                     //przekazanie danych pobranych z formularza do metody sendPost
                     sendPost(username, password);
 
-                    //przekierowanie do nowej aktywności po kliknięciu w przycisk
-                    Intent i = new Intent(LoginActivity.this, UserAccActivity.class);
-                    startActivity(i);
+
                 }
 
             }
@@ -91,9 +89,12 @@ public class LoginActivity extends BaseActivity {
                 Log.d("tag", new Gson().toJson(loginResponse));
                 if(loginResponse != null) {
                     //komunikaty dla użytkownika
-                    if (loginResponse.status == "succes") {
+                    if (loginResponse.status.equals("success")) {
                         //jeżeli uda się zalogować zostanie wyświetlona odpowiednia wiadomość pobrana z API
                         Toast.makeText(getApplicationContext(), (String) loginResponse.message, Toast.LENGTH_SHORT).show();
+                        //przekierowanie do nowej aktywności po kliknięciu w przycisk
+                        Intent i = new Intent(LoginActivity.this, UserAccActivity.class);
+                        startActivity(i);
                     } else {
                         //jeżeli nie uda się zalogować, zostanie wyświetlona odpowiednia wiadomość pobrana z API
                         Toast.makeText(getApplicationContext(), (String) loginResponse.message, Toast.LENGTH_SHORT).show();

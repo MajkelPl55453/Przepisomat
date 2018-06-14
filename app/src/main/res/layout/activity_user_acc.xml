@@ -19,10 +19,22 @@
         android:layout_marginLeft="42dp"
         android:layout_marginStart="42dp"
         android:layout_marginTop="48dp"
-        android:text="Witaj"
+        android:text="Witaj drogi użytkowniku!"
         android:textSize="40px"
         android:textAppearance="@style/CustomTextColor" />
-
+    <TextView
+        android:id="@+id/tvFavourites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="78dp"
+        android:text=""
+        android:textSize="30px"
+        android:textAppearance="@style/CustomTextColor" />
     <Button
         android:id="@+id/btLogout"
         android:layout_width="wrap_content"
